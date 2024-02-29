@@ -1,7 +1,7 @@
 {
   "name": "@autom8te/expo-express-template",
   "author": "autom8te",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "license": "ISC",
   "bin": {
