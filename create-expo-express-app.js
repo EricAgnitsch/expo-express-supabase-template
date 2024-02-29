@@ -4,6 +4,17 @@ const path = require('path');
 const fs = require('fs-extra');
 const Handlebars = require('handlebars');
 
+function createEnvLocalFile(projectPath) {
+  const envFilePath = path.join(projectPath, '.env.local');
+  const envContent = `
+  EXPO_PUBLIC_SUPABASE_URL=
+  EXPO_PUBLIC_SUPABASE_KEY=
+  `;
+
+  fs.writeFileSync(envFilePath, envContent, 'utf8');
+  console.log('.env.local file created with preset values');
+}
+
 function renameNpmignoreToGitignore(projectPath) {
   const npmignorePath = path.join(projectPath, '.npmignore');
   const gitignorePath = path.join(projectPath, '.gitignore');
@@ -50,6 +61,9 @@ const createProject = (projectName) => {
 
   // Updating files to use user's project name input
   replaceProjectName(projectPath, projectName);
+
+  // Create the .env.local template file
+  createEnvLocalFile(projectPath);
 
   // Rename .npmignore to .gitignore
   renameNpmignoreToGitignore(projectPath);
