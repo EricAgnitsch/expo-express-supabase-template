@@ -1,0 +1,15 @@
+{
+  "name": "@autom8te/expo-express-template",
+  "author": "autom8te",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "bin": {
+    "create-expo-express-app": "create-expo-express-app.js"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "handlebars": "^4.7.8",
+    "path": "^0.12.7"
+  }
+}
