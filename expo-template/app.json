@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "expo-template",
-    "slug": "expo-template",
-    "scheme": "expo-template",
+    "name": "{{project_name}}",
+    "slug": "{{project_name}}",
+    "scheme": "{{project_name}}",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

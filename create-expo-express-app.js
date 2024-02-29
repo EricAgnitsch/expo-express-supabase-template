@@ -27,6 +27,7 @@ function applyTemplate(filePath, data) {
 function replaceProjectName(projectPath, projectName) {
   const filesToReplace = [
     path.join(projectPath, 'package.json'),
+    path.join(projectPath, 'app.json'),
     // Add other file paths that needs 'project_name' updated
   ];
 
