@@ -36,3 +36,6 @@ yarn-error.*
 
 # jetbrains
 .idea
+
+# npmrc
+.npmrc
