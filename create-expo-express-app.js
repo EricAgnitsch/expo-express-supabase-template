@@ -6,10 +6,10 @@ const Handlebars = require('handlebars');
 
 function createEnvLocalFile(projectPath) {
   const envFilePath = path.join(projectPath, '.env.local');
-  const envContent = `
-  EXPO_PUBLIC_SUPABASE_URL=
-  EXPO_PUBLIC_SUPABASE_KEY=
-  `;
+  const envContent = [
+    'EXPO_PUBLIC_SUPABASE_URL=',
+    'EXPO_PUBLIC_SUPABASE_KEY=',
+  ].join('\n');
 
   fs.writeFileSync(envFilePath, envContent, 'utf8');
   console.log('.env.local file created with preset values');
