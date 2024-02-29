@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const {execSync} = require('child_process');
 const path = require('path');
 const fs = require('fs-extra');
 const Handlebars = require('handlebars');
@@ -24,6 +25,24 @@ function renameNpmignoreToGitignore(projectPath) {
     console.log('.npmignore has been renamed to .gitignore');
   } else {
     console.log('.npmignore not found, skipping rename.');
+  }
+}
+
+function initializeGitRepository(projectPath) {
+  try {
+    // Initialize a new Git repository
+    execSync('git init', {cwd: projectPath});
+    console.log('Initialized a new Git repository.');
+
+    // Stage all files in the repository
+    execSync('git add .', {cwd: projectPath});
+    console.log('Staged all files.');
+
+    // Commit the staged files with an initial commit message
+    execSync('git commit -m "Initial commit"', {cwd: projectPath});
+    console.log('Created initial commit.');
+  } catch (error) {
+    console.error('Failed to initialize Git repository or commit files:', error);
   }
 }
 
@@ -67,6 +86,9 @@ const createProject = (projectName) => {
 
   // Rename .npmignore to .gitignore
   renameNpmignoreToGitignore(projectPath);
+
+  // Initialize a new git repo
+  initializeGitRepository(projectPath);
 };
 
 const projectName = process.argv[2];
