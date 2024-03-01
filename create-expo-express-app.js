@@ -5,12 +5,8 @@ const path = require('path');
 const fs = require('fs-extra');
 const Handlebars = require('handlebars');
 
-function createEnvLocalFile(projectPath) {
+function createEnvLocalFile(projectPath, envContent) {
   const envFilePath = path.join(projectPath, '.env.local');
-  const envContent = [
-    'EXPO_PUBLIC_SUPABASE_URL=',
-    'EXPO_PUBLIC_SUPABASE_KEY=',
-  ].join('\n');
 
   fs.writeFileSync(envFilePath, envContent, 'utf8');
   console.log('.env.local file created with preset values');
@@ -54,13 +50,7 @@ function applyTemplate(filePath, data) {
   console.log(`Template applied to ${filePath}`);
 }
 
-function replaceProjectName(projectPath, projectName) {
-  const filesToReplace = [
-    path.join(projectPath, 'package.json'),
-    path.join(projectPath, 'app.json'),
-    // Add other file paths that needs 'project_name' updated
-  ];
-
+function replaceProjectName(projectPath, projectName, filesToReplace) {
   const data = {'project_name': projectName};
 
   console.log(`Applying template to replace project name in file...`);
@@ -70,19 +60,47 @@ function replaceProjectName(projectPath, projectName) {
   console.log(`Template applied for all instances of project name -- ${projectName}`);
 }
 
-const createProject = (projectName) => {
+const createExpoProject = (projectName) => {
   const templatePath = path.join(__dirname, 'expo-template');
-  const projectPath = path.join(process.cwd(), projectName);
+  const projectPath = path.join(process.cwd(), 'expo-' + projectName);
 
-  // Copying the vite-template excluding node_modules
+  // Copying the expo-template excluding node_modules
   fs.copySync(templatePath, projectPath);
   console.log(`Copied template from ${templatePath} to ${projectPath}`);
 
   // Updating files to use user's project name input
-  replaceProjectName(projectPath, projectName);
+  replaceProjectName(projectPath, projectName, [
+    path.join(projectPath, 'package.json'),
+    path.join(projectPath, 'app.json'),
+    // Add other file paths that needs 'project_name' updated
+  ]);
 
   // Create the .env.local template file
-  createEnvLocalFile(projectPath);
+  createEnvLocalFile(projectPath, [
+    'EXPO_PUBLIC_SUPABASE_URL=',
+    'EXPO_PUBLIC_SUPABASE_KEY=',
+  ].join('\n'));
+
+  // Rename .npmignore to .gitignore
+  renameNpmignoreToGitignore(projectPath);
+
+  // Initialize a new git repo
+  initializeGitRepository(projectPath);
+};
+
+const createExpressProject = (projectName) => {
+  const templatePath = path.join(__dirname, 'express-template');
+  const projectPath = path.join(process.cwd(), 'express-' + projectName);
+
+  // Copying the express-template excluding node_modules
+  fs.copySync(templatePath, projectPath);
+  console.log(`Copied template from ${templatePath} to ${projectPath}`);
+
+  // Updating files to use user's project name input
+  replaceProjectName(projectPath, projectName, [
+    path.join(projectPath, 'package.json'),
+    // Add other file paths that needs 'project_name' updated
+  ]);
 
   // Rename .npmignore to .gitignore
   renameNpmignoreToGitignore(projectPath);
@@ -97,4 +115,5 @@ if (!projectName) {
   process.exit(1);
 }
 
-createProject(projectName);
+createExpoProject(projectName);
+createExpressProject(projectName);
