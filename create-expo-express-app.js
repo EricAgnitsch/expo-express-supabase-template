@@ -102,6 +102,13 @@ const createExpressProject = (projectName) => {
     // Add other file paths that needs 'project_name' updated
   ]);
 
+  // Create the .env.local template file
+  createEnvLocalFile(projectPath, [
+    'SUPABASE_URL=',
+    'SUPABASE_KEY=',
+    'SUPABASE_JWT_SECRET=',
+  ].join('\n'));
+
   // Rename .npmignore to .gitignore
   renameNpmignoreToGitignore(projectPath);
 
