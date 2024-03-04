@@ -1,4 +1,4 @@
-import Device from 'expo-device';
+import * as Device from 'expo-device';
 import {
   AndroidImportance,
   getExpoPushTokenAsync,
