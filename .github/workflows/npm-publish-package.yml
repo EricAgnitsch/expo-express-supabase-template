@@ -1,13 +1,13 @@
 name: Node.js Package
 
 on:
-  pull_request:
-    branches:
-      - 'main'
+  release:
+    types:
+      - published
 
 jobs:
   publish-npm:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
