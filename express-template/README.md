@@ -3,10 +3,8 @@
 A few prerequisites needed for mobile notifications to work
 
 1. Logged in to Expo via CLI.
-2. Update `app.json`'s `extra.eas.projectId` to the project ID from your Expo's Project ID.
-    - Can be found at example url: https://expo.dev/accounts/<account_name>/projects/<project_name>
-3. Connection details to Supabase in `.env.local` is filled in.
-4. A `users` table with `push_notification_token` needs to exist in your Supabase instance.
+2. Connection details to Supabase in `.env.local` is filled in.
+3. A `users` table with `push_notification_token` needs to exist in your Supabase instance.
 
 Here's a SQL query to quickly create this table in Supabase's SQL editor.
 
