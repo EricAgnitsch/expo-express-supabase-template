@@ -1,14 +1,18 @@
 import * as Device from 'expo-device';
 import {
+  addNotificationReceivedListener,
+  addNotificationResponseReceivedListener,
   AndroidImportance,
   getExpoPushTokenAsync,
   getPermissionsAsync,
+  removeNotificationSubscription,
   requestPermissionsAsync,
   setNotificationChannelAsync,
   setNotificationHandler,
 } from 'expo-notifications';
-import {createContext, JSX, useContext, useEffect} from 'react';
+import {createContext, JSX, useContext, useEffect, useRef, useState} from 'react';
 import {AppState, Platform} from 'react-native';
+import {useSessionContext} from './SessionContext';
 
 interface NotificationProps {
 }
@@ -39,9 +43,51 @@ setNotificationHandler({
 });
 
 const NotificationProvider = (props: { children: JSX.Element | JSX.Element[] }) => {
+  const {loggedIn, getAccessToken} = useSessionContext();
+
+  const [notification, setNotification] = useState<any>();
+  const notificationListener = useRef<any>();
+  const responseListener = useRef<any>();
+
   useEffect(() => {
-    registerForPushNotificationsAsync();
-  }, []);
+    if (loggedIn) {
+      registerForPushNotificationsAsync()
+      .then(expoToken => {
+        getAccessToken()
+        .then(accessToken => {
+          fetch(`${process.env.EXPO_PUBLIC_SERVER_BASE_URL}/push-notification-token`, {
+            method: 'PUT',
+            headers: new Headers({
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`,
+            }),
+            body: JSON.stringify({
+              expoPushToken: expoToken,
+            }),
+          })
+          .then(response => {
+            if (response.status !== 200) {
+              alert('Issue updating Expo push token');
+            }
+          });
+        });
+      });
+
+      notificationListener.current = addNotificationReceivedListener(notification => {
+        setNotification(notification);
+      });
+
+      responseListener.current = addNotificationResponseReceivedListener(response => {
+        console.log('token ', response);
+      });
+
+      return () => {
+        removeNotificationSubscription(notificationListener.current);
+        removeNotificationSubscription(responseListener.current);
+      };
+    }
+  }, [loggedIn]);
 
   async function registerForPushNotificationsAsync() {
     let token: string = '';

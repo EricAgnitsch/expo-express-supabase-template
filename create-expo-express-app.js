@@ -77,6 +77,7 @@ const createExpoProject = (projectName) => {
 
   // Create the .env.local template file
   createEnvLocalFile(projectPath, [
+    'EXPO_PUBLIC_SERVER_BASE_URL=',
     'EXPO_PUBLIC_SUPABASE_URL=',
     'EXPO_PUBLIC_SUPABASE_KEY=',
   ].join('\n'));
