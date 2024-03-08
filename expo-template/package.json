@@ -9,13 +9,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.39.7",
+    "base-64": "^1.0.0",
     "expo": "~50.0.8",
     "expo-constants": "~15.4.5",
     "expo-device": "^5.9.3",
     "expo-linking": "~6.2.2",
     "expo-notifications": "^0.27.6",
     "expo-router": "~3.4.7",
+    "expo-secure-store": "^12.8.1",
     "expo-status-bar": "~1.11.1",
+    "jwt-decode": "^4.0.0",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
     "react-native": "0.73.4",
