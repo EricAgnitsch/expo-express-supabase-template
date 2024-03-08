@@ -3,6 +3,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import {globalErrorHandler} from './middlewares/global-error-handler';
+import notification from './routes/notification';
 
 const app = express();
 const port = 3000;
@@ -15,6 +16,9 @@ app.get('/', (req, res) => {
     data: 'Hello World!',
   });
 });
+
+// Add routes here
+app.use(notification);
 
 // ** The global error handling must be the last app.use() declaration **
 app.use(globalErrorHandler);
