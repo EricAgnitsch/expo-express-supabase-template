@@ -12,6 +12,7 @@ the proud owner of a full-fledged mobile application.
 - Alerts on your phone with mobile notifications
 - Smooth sailing with Expo page routing
 - Styling with Nativewind (tailwindcss)
+- Dockerized for easy deployment and hosting
 
 ### Requirements
 

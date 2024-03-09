@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  referred_server:
+  express-server:
     container_name: {{project_name}}
     restart: always
     build:

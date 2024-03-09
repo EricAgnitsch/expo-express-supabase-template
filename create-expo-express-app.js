@@ -72,11 +72,12 @@ const createExpoProject = (projectName) => {
   replaceProjectName(projectPath, projectName, [
     path.join(projectPath, 'package.json'),
     path.join(projectPath, 'app.json'),
+    path.join(projectPath, 'docker-compose-dev.yml'),
     // Add other file paths that needs 'project_name' updated
   ]);
 
   // Create the .env.local template file
-  createEnvLocalFile(projectPath, '.env.file', [
+  createEnvLocalFile(projectPath, '.env', [
     'EXPO_PUBLIC_SERVER_BASE_URL=',
     'EXPO_PUBLIC_SUPABASE_URL=',
     'EXPO_PUBLIC_SUPABASE_KEY=',
