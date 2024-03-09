@@ -1,4 +1,4 @@
-# expo-express-template
+# expo-express-supabase-template
 
 ## Description
 
@@ -28,7 +28,7 @@ Before starting, ensure you have the following installed and configured:
 
 ## Getting Started
 
-To create your project with this template, run `npx @autom8te/expo-express-template@latest <project_name>`,
+To create your project with this template, run `npx @autom8te/expo-express-supabase-template@latest <project_name>`,
 replacing `project_name` with your camelcase project name. This will create an `expo-<project_name>` for the Expo mobile
 front-end and `express-<project_name>` folder containing Express server back-end.
 
