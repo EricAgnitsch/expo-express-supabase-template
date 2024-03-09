@@ -1,0 +1,21 @@
+#name: Build and Host Server
+#
+#on:
+#  release:
+#    types:
+#      - published
+#
+#jobs:
+#  deploy:
+#    runs-on: self-hosted
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#      - name: Deploy on Server
+#        run: |
+#          EXPO_PUBLIC_SERVER_BASE_URL=${{ secrets.EXPO_PUBLIC_SERVER_BASE_URL }} \
+#          EXPO_PUBLIC_SUPABASE_URL=${{ secrets.EXPO_PUBLIC_SUPABASE_URL }} \
+#          EXPO_PUBLIC_SUPABASE_KEY=${{ secrets.EXPO_PUBLIC_SUPABASE_KEY }} \
+#          docker compose -f docker-compose-dev.yml up -d --build
+#      - name: Prune dangling images
+#        run: docker image prune -f
