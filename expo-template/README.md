@@ -2,9 +2,9 @@
 
 ## Description
 
-This project is a subset of [expo-template](https://github.com/EricAgnitsch/expo-template), and it's your go-to for the
-mobile side of things in this ecosystem. Just tweak a few environment variables, create a Supabase table, and bam!
-You've got yourself a mobile app with Supabase.
+This project is a subset of [expo-express-template](https://github.com/EricAgnitsch/expo-express-template), and it's
+your go-to for the mobile side of things in this ecosystem. Just tweak a few environment variables, create a Supabase
+table, and bam! You've got yourself a mobile app with Supabase.
 
 ### Features
 
