@@ -6,12 +6,13 @@ This project is a subset of [expo-template](https://github.com/EricAgnitsch/expo
 backend side of things in this ecosystem. Just tweak a few environment variables, create a Supabase table, and bam!
 You've got yourself a backend server with Supabase.
 
-## Features
+### Features
 
 - Easy-peasy authentication (using Supabase's auth)
 - Mobile notifications in any endpoint
+- Dockerized for easy deployment and hosting
 
-## Requirements
+### Requirements
 
 Before starting, ensure you have the following installed and configured:
 
@@ -21,11 +22,11 @@ Before starting, ensure you have the following installed and configured:
 - **Supabase**: A [Supabase](https://supabase.com/) project.
 - **Expo**: An [Expo](https://expo.dev/) project.
 
-## Dependencies
+### Dependencies
 
 All the dependencies are already in `package.json`! Just hit up `yarn` and watch the red squigglies disappear.
 
-## Environment Variables
+### Environment Variables
 
 The `.env.local` file already exists with the required keys, just hunt down the values and plug 'em in:
 
@@ -70,3 +71,40 @@ yarn start
 ```
 
 This command will start the Express server on `localhost:3000`.
+
+### Docker
+
+> [!IMPORTANT]
+> Your machine requires [Docker](https://www.docker.com/get-started/) to be able to use this part.
+
+#### Locally hosted
+
+The template comes with a ready-to-use `docker-compose-dev.yml` that uses `Dockerfile.dev`. This container is ready to
+be deployed anywhere!
+
+To start the container locally, run:
+
+```
+docker compose -f docker-compose-dev.yml up -d --build
+```
+
+This will run on `http://localhost:3001`.
+
+#### CI/CD deployed and hosted
+
+This template also comes with a *commented* GitHub workflows file -- `develop.yml`. This workflow will build and run the
+docker container on a dedicated self-hosted server of your choice! By default, it is set to run on a GitHub release
+publish event.
+
+These requirements need to exist for this workflow to work:
+
+- A [self-hosted GitHub runner](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/adding-self-hosted-runners#adding-a-self-hosted-runner-to-a-repository)
+on a dedicated machine.
+- The [3 environment variables](#environment-variables) to exist
+  as [GitHub Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions).
+
+> [!NOTE]
+> The `self-hosted` setup is just something quick you can do with a spare laptop, Raspberry PI, NAS etc etc. You could
+> definitely set up a more robust pipeline to deploy the image to a Docker registry using GitHub's default hosted
+> machines
+> to build your project! 
