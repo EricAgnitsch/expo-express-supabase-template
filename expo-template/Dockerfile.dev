@@ -1,0 +1,13 @@
+﻿FROM node:lts-bullseye-slim as build
+
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package.json yarn.lock ./
+RUN yarn global add @expo/ngrok@^4.1.0
+RUN yarn
+
+COPY . ./
+
+CMD ["yarn", "start-prod"]

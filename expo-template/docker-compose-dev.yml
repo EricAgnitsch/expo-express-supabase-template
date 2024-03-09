@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  expo-app:
+    container_name: expo-{{project_name}}
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      EXPO_PUBLIC_SERVER_BASE_URL: ${EXPO_PUBLIC_SERVER_BASE_URL}
+      EXPO_PUBLIC_SUPABASE_URL: ${EXPO_PUBLIC_SUPABASE_URL}
+      EXPO_PUBLIC_SUPABASE_KEY: ${EXPO_PUBLIC_SUPABASE_KEY}
+    stdin_open: true
+    tty: true

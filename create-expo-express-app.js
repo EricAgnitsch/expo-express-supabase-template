@@ -5,8 +5,8 @@ const path = require('path');
 const fs = require('fs-extra');
 const Handlebars = require('handlebars');
 
-function createEnvLocalFile(projectPath, envContent) {
-  const envFilePath = path.join(projectPath, '.env.local');
+function createEnvLocalFile(projectPath, fileName, envContent) {
+  const envFilePath = path.join(projectPath, fileName);
 
   fs.writeFileSync(envFilePath, envContent, 'utf8');
   console.log('.env.local file created with preset values');
@@ -72,11 +72,12 @@ const createExpoProject = (projectName) => {
   replaceProjectName(projectPath, projectName, [
     path.join(projectPath, 'package.json'),
     path.join(projectPath, 'app.json'),
+    path.join(projectPath, 'docker-compose-dev.yml'),
     // Add other file paths that needs 'project_name' updated
   ]);
 
   // Create the .env.local template file
-  createEnvLocalFile(projectPath, [
+  createEnvLocalFile(projectPath, '.env', [
     'EXPO_PUBLIC_SERVER_BASE_URL=',
     'EXPO_PUBLIC_SUPABASE_URL=',
     'EXPO_PUBLIC_SUPABASE_KEY=',
@@ -100,11 +101,12 @@ const createExpressProject = (projectName) => {
   // Updating files to use user's project name input
   replaceProjectName(projectPath, projectName, [
     path.join(projectPath, 'package.json'),
+    path.join(projectPath, 'docker-compose-dev.yml'),
     // Add other file paths that needs 'project_name' updated
   ]);
 
   // Create the .env.local template file
-  createEnvLocalFile(projectPath, [
+  createEnvLocalFile(projectPath, '.env', [
     'SUPABASE_URL=',
     'SUPABASE_KEY=',
     'SUPABASE_JWT_SECRET=',
