@@ -64,13 +64,10 @@ notification setup.
 
 ## Getting Started
 
-To start the project, run:
+- Run `yarn` to install all the required packages.
+- Run `yarn start` to start the project
 
-```
-yarn start
-```
-
-This command will start the Express server on `localhost:3000`.
+This command will start the Express server on `http://localhost:3000`.
 
 ### Docker
 

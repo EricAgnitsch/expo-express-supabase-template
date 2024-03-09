@@ -66,13 +66,11 @@ notification setup.
 
 ## Getting Started
 
-To start the project, run:
+- Run `yarn` to install all the required packages.
+- Run `yarn start` to start the project
 
-```
-expo start
-```
-
-This command will start the Expo developer tools in your browser.
+You will see a QR code to start developing on an external device, or use one of the Expo options to launch the app in
+your iOS/Android emulator!
 
 ### Docker
 
