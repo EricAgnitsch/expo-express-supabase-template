@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   express-server:
-    container_name: {{project_name}}
+    container_name: express-{{project_name}}
     restart: always
     build:
       context: .
