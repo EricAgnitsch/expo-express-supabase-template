@@ -1,8 +1,8 @@
 {
-  "name": "@autom8te/expo-express-template",
+  "name": "@autom8te/expo-express-supabase-template",
   "author": "autom8te",
   "version": "1.0.0",
-  "description": "",
+  "description": "Template for Expo and Express to spin up a quick ready-to-go mobile app with a Supabase backend.",
   "license": "ISC",
   "bin": {
     "create-expo-express-app": "create-expo-express-app.js"

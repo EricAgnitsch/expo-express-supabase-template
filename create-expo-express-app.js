@@ -121,7 +121,7 @@ const createExpressProject = (projectName) => {
 
 const projectName = process.argv[2];
 if (!projectName) {
-  console.error(`Please specify the project name: create-expo-express-app project-name`);
+  console.error(`Please specify the project name: npx @autom8te/expo-express-supabase-template@latest project-name`);
   process.exit(1);
 }
 
